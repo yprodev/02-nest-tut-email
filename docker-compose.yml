@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres-nest-tut-emails-subscribers
+    image: postgres:latest
+    ports:
+      - "5433:5432" # External port is changed
+    volumes:
+      - /data/postgres:/data/postgres
+    env_file: "./.env"
+    networks:
+      - postgres-nest-tut-emails-subscribers
+
+networks:
+  postgres-nest-tut-emails-subscribers:
+    driver: bridge
