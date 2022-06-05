@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { EventPattern, MessagePattern } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { CreateSubscriberDto } from './dto/createSubscriber.dto';
 
 import { SubscribersService } from './subscribers.service';
@@ -10,7 +10,7 @@ export class SubscribersController {
   constructor(private readonly subscribersService: SubscribersService) {}
 
   @EventPattern({ cmd: CMD.ADD_SUBSCRIBER })
-  addSubscriber(subscriber: CreateSubscriberDto) {
+  addSubscriber(@Payload() subscriber: CreateSubscriberDto) {
     return this.subscribersService.addSubscriber(subscriber);
   }
 
